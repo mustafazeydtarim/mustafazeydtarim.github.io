@@ -23,7 +23,7 @@ window.SITE = {
 
   scoreboard: [
     ["Licence", "ITF Coach"],
-    ["Courts", "Sarıyer"],
+    ["Courts", "Beşiktaş · Sarıyer"],
     ["Languages", "TR · EN"],
     ["Background", "Tennis · U12 TR Champion"],
   ],
@@ -41,7 +41,7 @@ window.SITE = {
     lead: "Padel is a game of positioning, patience and partnership. In my lessons we build all three, step by step, at your level.",
     paragraphs: [
       "Every lesson starts with finding your place on court: where to stand at the net and at the back, how to set up when the ball comes off the glass, how to share space with your partner. Shots like the volley, bandeja and víbora are built on that foundation.",
-      "My background is tennis: I've been in racket sports since 2005, I hold an ITF coaching licence, and I bring the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel and Opadel in Sarıyer, in Turkish and English.",
+      "My background is tennis: I've been in racket sports since 2005, I hold an ITF coaching licence, and I bring the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel in Akatlar and Opadel in Sarıyer, in Turkish and English.",
     ],
     principles: [
       { icon: "wall", title: "Reading the wall", text: "No panic when the ball comes off the glass: we work on reading the angle, waiting and hitting at the right moment." },
@@ -61,9 +61,9 @@ window.SITE = {
     { id: "birebir", icon: "user", name: "Private Lesson", duration: 55, price: 5000, unit: "lesson",
       text: "All the focus on you: technique, positioning and wall play in a single plan.",
       perks: ["Personal development plan", "Technique & wall work", "Court fee included"], featured: true },
-    { id: "grup", icon: "users", name: "Group Lesson", duration: 55, price: 6000, unit: "lesson · whole group",
+    { id: "grup", icon: "users", name: "Group Lesson", duration: 55, price: 6000, unit: "lesson · 2 players total",
       text: "With your partner or friends: work on doubles positioning, communication and transitions together.",
-      perks: ["2–4 players", "Doubles tactics & drills", "Court fee included"] },
+      perks: ["2 players", "Doubles tactics & drills", "Court fee included"] },
     { id: "junior", icon: "smile", name: "Junior Lesson", duration: 55, price: 5000, unit: "lesson · private",
       text: "For kids and teens: coordination, core technique and a love for the game. Junior pair lessons available too.",
       perks: ["Suitable for every age", "Junior pair lesson: ₺6,000", "Court fee included"] },
@@ -76,12 +76,12 @@ window.SITE = {
   },
 
   schedule: Object.fromEntries([0, 1, 2, 3, 4, 5, 6].map((d) => [d,
-    ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]])),
+    ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]])),
   bookingDaysAhead: 21,
 
   locations: [
-    { name: "Lepadel", area: "Sarıyer, Istanbul", maps: "Lepadel İstanbul" },
-    { name: "Opadel", area: "Sarıyer, Istanbul", maps: "O'Padel Skyland Sarıyer İstanbul" },
+    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul" },
+    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul" },
   ],
 
   testimonials: [],
@@ -90,8 +90,8 @@ window.SITE = {
     { q: "I've never played padel. Can I start?", a: "Absolutely. Padel is fun from the very first lesson. We start with the grip, ready position and basic shots. There's no package requirement; you can start with a single trial lesson." },
     { q: "I play tennis. What's different in padel?", a: "Your feel for the ball and stroke technique are a big advantage. What you'll adapt: a more compact, controlled swing, letting the ball come off the glass, and building points with lobs and patience instead of hitting hard. My background is tennis too, so we work on this transition specifically." },
     { q: "What ages do you teach?", a: "All ages. Private or junior pair lessons for kids and teens; private and group lessons for adults." },
-    { q: "How much are lessons? Is the court included?", a: "A private lesson is ₺5,000 and a group lesson ₺6,000; each lesson is 55 minutes. The court fee is included, so there's nothing extra to pay. There are no package discounts; every lesson is charged individually." },
-    { q: "Where and when are lessons?", a: "At Lepadel and Opadel in Sarıyer. I teach every day of the week; pick a time that suits you when booking." },
+    { q: "How much are lessons? Is the court included?", a: "A private lesson is ₺5,000 and a group lesson for 2 players ₺6,000 in total; each lesson is 55 minutes. The court fee is included, so there's nothing extra to pay. There are no package discounts; every lesson is charged individually." },
+    { q: "Where and when are lessons?", a: "At Lepadel in Akatlar (Beşiktaş) and Opadel in Sarıyer. I teach every day of the week, 08:00–23:00; pick a time that suits you when booking." },
     { q: "Do you teach in English?", a: "Yes. I teach in both English and Turkish." },
     { q: "How do I pay?", a: "Payment is by bank transfer (EFT)." },
     { q: "What's the cancellation policy?", a: "You can cancel or reschedule up to 24 hours before the lesson. With less than 24 hours' notice, the lesson counts as taken and is charged." },

@@ -28,7 +28,7 @@ window.SITE = {
   // Hero skorbordu
   scoreboard: [
     ["Lisans", "ITF Antrenör"],
-    ["Kortlar", "Sarıyer"],
+    ["Kortlar", "Beşiktaş · Sarıyer"],
     ["Ders dili", "TR · EN"],
     ["Kökeni", "Tenis · U12 TR Şampiyonu"],
   ],
@@ -46,7 +46,7 @@ window.SITE = {
     lead: "Padel; doğru pozisyon, sabır ve partnerle uyum oyunu. Derslerimde bu üçünü seviyene göre adım adım kuruyoruz.",
     paragraphs: [
       "Her ders kort içindeki yerini bulmakla başlar: filede ve arkada nerede durmalısın, top camdan döndüğünde nasıl hazırlanmalısın, partnerinle alanı nasıl paylaşmalısın. Vole, bandeja ve víbora gibi vuruşlar bu temelin üzerine oturur.",
-      "Altyapım tenis: 2005'ten beri raket sporlarındayım, ITF antrenör lisansım var ve beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Sarıyer'de Lepadel ve Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
+      "Altyapım tenis: 2005'ten beri raket sporlarındayım, ITF antrenör lisansım var ve beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Akatlar'da Lepadel ve Sarıyer'de Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
     ],
     principles: [
       { icon: "wall", title: "Duvar okuma", text: "Top camdan dönünce telaş yok: açıyı okumayı, beklemeyi ve doğru anda vurmayı çalışıyoruz." },
@@ -67,9 +67,9 @@ window.SITE = {
     { id: "birebir", icon: "user", name: "Birebir Ders", duration: 55, price: 5000, unit: "ders",
       text: "Tüm odak sende: teknik, pozisyon ve duvar oyunu tek bir plan içinde.",
       perks: ["Kişisel gelişim planı", "Teknik & duvar çalışması", "Kort ücreti dahil"], featured: true },
-    { id: "grup", icon: "users", name: "Grup Dersi", duration: 55, price: 6000, unit: "ders · grup toplamı",
+    { id: "grup", icon: "users", name: "Grup Dersi", duration: 55, price: 6000, unit: "ders · 2 kişi toplam",
       text: "Partnerinle ya da arkadaşlarınla: eşli pozisyon, iletişim ve geçişleri birlikte çalışın.",
-      perks: ["2–4 oyuncu", "Eşli taktik & drill", "Kort ücreti dahil"] }, // kişi sayısı teyit et
+      perks: ["2 oyuncu", "Eşli taktik & drill", "Kort ücreti dahil"] },
     { id: "junior", icon: "smile", name: "Junior Ders", duration: 55, price: 5000, unit: "ders · birebir",
       text: "Çocuk ve gençler için: koordinasyon, temel teknik ve oyun sevgisi. İkili junior grup dersi de var.",
       perks: ["Her yaşa uygun", "İkili junior grup: 6.000 ₺", "Kort ücreti dahil"] },
@@ -81,14 +81,14 @@ window.SITE = {
     text: "Paket ya da taahhüt yok: tek bir dersle tanışalım, oyununu görüp sana özel planı çıkaralım.",
   },
 
-  // Haftanın her günü ders. Saat aralığı teyit et: 0 = Pazar … 6 = Cumartesi
+  // Haftanın her günü, Lepadel'in açık olduğu 08:00–23:00 aralığında (55 dk ders → son ders 22:00). 0 = Pazar … 6 = Cumartesi
   schedule: Object.fromEntries([0, 1, 2, 3, 4, 5, 6].map((d) => [d,
-    ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]])),
+    ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]])),
   bookingDaysAhead: 21,
 
   locations: [
-    { name: "Lepadel", area: "Sarıyer, İstanbul", maps: "Lepadel İstanbul" },
-    { name: "Opadel", area: "Sarıyer, İstanbul", maps: "O'Padel Skyland Sarıyer İstanbul" },
+    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul" },
+    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul" },
   ],
 
   // Gerçek öğrenci yorumları geldiğinde ekle: { name, meta, text } — boşsa bölüm gizlenir
@@ -98,8 +98,8 @@ window.SITE = {
     { q: "Hiç padel oynamadım, başlayabilir miyim?", a: "Kesinlikle. Padel ilk dersten keyif veren bir oyun. Tutuş, hazır duruş ve temel vuruşlarla başlıyoruz. Paket zorunluluğu yok; tek bir deneme dersiyle başlayabilirsin." },
     { q: "Tenisten geliyorum, padelde fark ne?", a: "Top hissin ve vuruş temelin büyük avantaj. Uyarlaman gerekenler: daha kompakt ve kontrollü swing, topun camdan dönmesine izin vermek, sert vurmak yerine lob ve sabırla puan kurmak. Benim de altyapım tenis; bu geçişi derslerde özellikle çalışıyoruz." },
     { q: "Hangi yaşlara ders veriyorsun?", a: "Her yaşa. Çocuk ve gençler için birebir ya da ikili junior dersler, yetişkinler için birebir ve grup dersleri veriyorum." },
-    { q: "Ders ücretleri ne kadar, kort dahil mi?", a: "Birebir ders 5.000 ₺, grup dersi 6.000 ₺; bir ders 55 dakika. Kort ücreti bu fiyatlara dahil, ayrıca ödeme yapmazsın. Paket indirimi yok, her ders tek tek ücretlendirilir." },
-    { q: "Dersler nerede ve hangi günler?", a: "Sarıyer'de Lepadel ve Opadel kortlarında. Haftanın her günü ders veriyorum; uygun saati rezervasyonda seçebilirsin." },
+    { q: "Ders ücretleri ne kadar, kort dahil mi?", a: "Birebir ders 5.000 ₺, 2 kişilik grup dersi toplam 6.000 ₺; bir ders 55 dakika. Kort ücreti bu fiyatlara dahil, ayrıca ödeme yapmazsın. Paket indirimi yok, her ders tek tek ücretlendirilir." },
+    { q: "Dersler nerede ve hangi günler?", a: "Beşiktaş Akatlar'daki Lepadel ve Sarıyer'deki Opadel kortlarında. Haftanın her günü 08:00–23:00 arasında ders veriyorum; uygun saati rezervasyonda seçebilirsin." },
     { q: "Dersleri İngilizce verebilir misin?", a: "Evet. Dersleri Türkçe ve İngilizce veriyorum." },
     { q: "Ödeme nasıl yapılıyor?", a: "Ödemeler havale / EFT ile yapılır." },
     { q: "Ders iptal ya da erteleme nasıl oluyor?", a: "Dersten 24 saat öncesine kadar iptal ya da erteleme yapabilirsin. 24 saatten az kala yapılan iptallerde ders yapılmış sayılır ve ücreti alınır." },
