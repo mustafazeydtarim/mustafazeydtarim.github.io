@@ -19,7 +19,7 @@
       stars: "5 üzerinden 5 yıldız",
       wa: "WhatsApp", waValue: "Hemen mesaj gönder", phone: "Telefon", email: "E-posta",
       tennis: "Tenis geçmişi", tennisValue: "Kariyer & başarılar", newTab: "(yeni sekmede açılır)",
-      maps: "Haritada aç", anyCourt: "Fark etmez",
+      maps: "Haritada aç", glass: "Glass'ta gör", anyCourt: "Fark etmez",
       quiz: [
         { q: "Padel geçmişin nasıl?", opts: ["Hiç oynamadım", "Birkaç kez oynadım", "Düzenli oynuyorum", "Lig / turnuva oynuyorum"] },
         { q: "Top duvardan ya da camdan döndükten sonra oynayabiliyor musun?", opts: ["Henüz değil", "Bazen", "Rahatça", "Bandeja / víbora ile hücum ediyorum"] },
@@ -42,7 +42,7 @@
       closed: "Kapalı", free: (n) => `${n} boş`, full: "Dolu",
       pickDay: "Önce yukarıdan bir gün seç.", past: "geçmiş", taken: "dolu",
       sLesson: "Ders", sDuration: "Süre", sDate: "Tarih", sTime: "Saat",
-      hint: (l) => (l.unit.includes("toplam") ? "2 kişi toplam fiyattır. " : "") + "Kort ücreti dahil · Ödeme havale / EFT.",
+      hint: (l) => (l.unit.includes("toplam") ? "2 kişi toplam fiyattır. " : "") + "Kort ücreti dahil · Ödeme havale / EFT. Kort müsaitliği Glass'tan kontrol edilip WhatsApp'tan onaylanır.",
       needDay: "Lütfen bir gün seç.", needTime: "Lütfen bir saat seç.",
       picked: (name) => `${name} seçildi — şimdi gün ve saat seç.`,
       vName: "Ad soyadını en az 3 karakter olarak gir.",
@@ -54,6 +54,7 @@
         "Merhaba Bekir Hoca, siteden ders rezervasyonu talebim var.", "",
         `Kod: ${b.code}`, `Ders: ${b.lessonName} (${b.duration} dk)`, `Tarih: ${when}`, `Kort: ${b.location}`,
         `Ad: ${b.name}`, `Telefon: ${b.phone}`, `Seviye: ${b.level}`, b.note ? `Not: ${b.note}` : null, `Tutar: ${price}`,
+        "", "Bu saatte kort müsait mi, onaylayabilir misin?",
       ],
       mailSubject: (code) => `Padel dersi talebi ${code}`,
       icsSummary: (name) => `Padel dersi — ${name} (Bekir Berk Şahin)`,
@@ -75,7 +76,7 @@
       stars: "5 out of 5 stars",
       wa: "WhatsApp", waValue: "Send a message", phone: "Phone", email: "Email",
       tennis: "Tennis background", tennisValue: "Career & titles", newTab: "(opens in a new tab)",
-      maps: "Open in Maps", anyCourt: "No preference",
+      maps: "Open in Maps", glass: "View on Glass", anyCourt: "No preference",
       quiz: [
         { q: "What's your padel experience?", opts: ["Never played", "Played a few times", "I play regularly", "I play league / tournaments"] },
         { q: "Can you play the ball after it comes off the wall or glass?", opts: ["Not yet", "Sometimes", "Comfortably", "I attack with bandeja / víbora"] },
@@ -98,7 +99,7 @@
       closed: "Closed", free: (n) => `${n} free`, full: "Full",
       pickDay: "Pick a day above first.", past: "past", taken: "taken",
       sLesson: "Lesson", sDuration: "Duration", sDate: "Date", sTime: "Time",
-      hint: (l) => (l.unit.includes("total") ? "Total price for 2 players. " : "") + "Court fee included · Payment by bank transfer.",
+      hint: (l) => (l.unit.includes("total") ? "Total price for 2 players. " : "") + "Court fee included · Payment by bank transfer. Court availability is checked on Glass and confirmed on WhatsApp.",
       needDay: "Please pick a day.", needTime: "Please pick a time.",
       picked: (name) => `${name} selected — now pick a day and time.`,
       vName: "Enter your full name (at least 3 characters).",
@@ -110,6 +111,7 @@
         "Hi Bekir, I'd like to book a lesson via your website.", "",
         `Code: ${b.code}`, `Lesson: ${b.lessonName} (${b.duration} min)`, `Date: ${when}`, `Court: ${b.location}`,
         `Name: ${b.name}`, `Phone: ${b.phone}`, `Level: ${b.level}`, b.note ? `Note: ${b.note}` : null, `Price: ${price}`,
+        "", "Could you check the court is free at this time and confirm?",
       ],
       mailSubject: (code) => `Padel lesson request ${code}`,
       icsSummary: (name) => `Padel lesson — ${name} (Bekir Berk Şahin)`,
@@ -355,7 +357,7 @@
   $("#mobileWa").href = waHelloHref;
   html("#locations", S.locations.map((l) => `
     <li><div><strong>${esc(l.name)}</strong><span>${esc(l.area)}${l.note ? " · " + esc(l.note) : ""}</span></div>
-    ${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">${L.maps}</a>` : ""}</li>`).join(""));
+    <span class="locations__links">${l.glass ? `<a href="${esc(l.glass)}" target="_blank" rel="noopener">${L.glass}<span class="sr-only"> ${L.newTab}</span></a>` : ""}${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">${L.maps}<span class="sr-only"> ${L.newTab}</span></a>` : ""}</span></li>`).join(""));
   html("#fLoc", `<option>${L.anyCourt}</option>` + S.locations.map((l) => `<option>${esc(l.name)} (${esc(l.area)})</option>`).join(""));
   $("#year").textContent = new Date().getFullYear();
 

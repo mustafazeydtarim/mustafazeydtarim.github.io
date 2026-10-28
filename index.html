@@ -257,7 +257,7 @@
             <p class="eyebrow"><b>06</b> Rezervasyon</p>
             <h2 id="book-h" class="h2">Kortta yerini ayırt</h2>
           </div>
-          <p class="section__aside">Talebin anında Bekir'e iletilir, onay WhatsApp üzerinden gelir.</p>
+          <p class="section__aside">Seçtiğin saat bir taleptir: Bekir kort müsaitliğini Glass'tan kontrol edip kortu ayırır, onay WhatsApp'tan gelir.</p>
         </div>
 
         <div class="booking reveal">
@@ -295,7 +295,8 @@
               </div>
               <p class="step__title mt">Saat seç</p>
               <div class="slots" id="slots" role="radiogroup" aria-label="Saat"></div>
-              <p class="legend"><span class="dot dot--free"></span> Müsait <span class="dot dot--taken"></span> Dolu / geçmiş</p>
+              <p class="legend"><span class="dot dot--free"></span> Talep edilebilir <span class="dot dot--taken"></span> Kapalı / geçmiş</p>
+              <p class="booking-note"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg> Kortlar Glass üzerinden kiralanıyor. Seçtiğin saatte kort doluysa Bekir en yakın boş saati önerir.</p>
               <div class="step__nav">
                 <button class="btn btn--ghost" type="button" data-prev><svg class="i" aria-hidden="true"><use href="#i-left"/></svg> Geri</button>
                 <button class="btn btn--primary" type="button" data-next>Devam <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -350,7 +351,7 @@
               </div>
               <div class="step__nav">
                 <button class="btn btn--ghost" type="button" data-prev><svg class="i" aria-hidden="true"><use href="#i-left"/></svg> Geri</button>
-                <button class="btn btn--primary" type="submit" id="submitBtn"><span>Rezervasyonu tamamla</span></button>
+                <button class="btn btn--primary" type="submit" id="submitBtn"><span>Ders talebini gönder</span></button>
               </div>
             </form>
 
@@ -359,7 +360,7 @@
               <div class="done__check" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></div>
               <h3 class="h3">Talebin alındı!</h3>
               <p class="muted">Rezervasyon kodun: <strong class="code" id="doneCode"></strong></p>
-              <p class="muted">Son adım: talebini WhatsApp'tan gönder, Bekir en geç birkaç saat içinde onaylasın.</p>
+              <p class="muted">Son adım: talebini WhatsApp'tan gönder. Bekir kortu Glass'tan kontrol edip ayırır ve en geç birkaç saat içinde onaylar.</p>
               <div class="done__actions">
                 <a class="btn btn--wa" id="waLink" href="#" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg> WhatsApp ile gönder</a>
                 <button class="btn btn--ghost" type="button" id="icsBtn"><svg class="i" aria-hidden="true"><use href="#i-calplus"/></svg> Takvime ekle</button>

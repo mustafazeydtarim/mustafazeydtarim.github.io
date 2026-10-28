@@ -80,8 +80,10 @@ window.SITE = {
   bookingDaysAhead: 21,
 
   locations: [
-    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul" },
-    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul" },
+    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul",
+      glass: "https://glasspadelapp.com/venue/le-padel" },
+    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul",
+      glass: "https://glasspadelapp.com/venue/opadel" },
   ],
 
   testimonials: [],
@@ -92,6 +94,7 @@ window.SITE = {
     { q: "What ages do you teach?", a: "All ages. Private or junior pair lessons for kids and teens; private and group lessons for adults." },
     { q: "How much are lessons? Is the court included?", a: "A private lesson is ₺5,000 and a group lesson for 2 players ₺6,000 in total; each lesson is 55 minutes. The court fee is included, so there's nothing extra to pay. There are no package discounts; every lesson is charged individually." },
     { q: "Where and when are lessons?", a: "At Lepadel in Akatlar (Beşiktaş) and Opadel in Sarıyer. I teach every day of the week, 08:00–23:00; pick a time that suits you when booking." },
+    { q: "Will the court be free at the time I pick?", a: "The time you pick on the site is a request. Courts are booked through the Glass app: when your request arrives I check court availability on Glass, reserve the court and confirm on WhatsApp. If that slot is taken, I'll suggest the nearest free time." },
     { q: "Do you teach in English?", a: "Yes. I teach in both English and Turkish." },
     { q: "How do I pay?", a: "Payment is by bank transfer (EFT)." },
     { q: "What's the cancellation policy?", a: "You can cancel or reschedule up to 24 hours before the lesson. With less than 24 hours' notice, the lesson counts as taken and is charged." },

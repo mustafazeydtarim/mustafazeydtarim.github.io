@@ -257,7 +257,7 @@
             <p class="eyebrow"><b>06</b> Booking</p>
             <h2 id="book-h" class="h2">Book your court time</h2>
           </div>
-          <p class="section__aside">Your request goes straight to Bekir; confirmation comes via WhatsApp.</p>
+          <p class="section__aside">The time you pick is a request: Bekir checks court availability on Glass, reserves the court and confirms on WhatsApp.</p>
         </div>
 
         <div class="booking reveal">
@@ -295,7 +295,8 @@
               </div>
               <p class="step__title mt">Pick a time</p>
               <div class="slots" id="slots" role="radiogroup" aria-label="Time"></div>
-              <p class="legend"><span class="dot dot--free"></span> Available <span class="dot dot--taken"></span> Taken / past</p>
+              <p class="legend"><span class="dot dot--free"></span> Can be requested <span class="dot dot--taken"></span> Closed / past</p>
+              <p class="booking-note"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg> Courts are booked through Glass. If the court is taken at your time, Bekir will suggest the nearest free slot.</p>
               <div class="step__nav">
                 <button class="btn btn--ghost" type="button" data-prev><svg class="i" aria-hidden="true"><use href="#i-left"/></svg> Back</button>
                 <button class="btn btn--primary" type="button" data-next>Continue <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -350,7 +351,7 @@
               </div>
               <div class="step__nav">
                 <button class="btn btn--ghost" type="button" data-prev><svg class="i" aria-hidden="true"><use href="#i-left"/></svg> Back</button>
-                <button class="btn btn--primary" type="submit" id="submitBtn"><span>Complete booking</span></button>
+                <button class="btn btn--primary" type="submit" id="submitBtn"><span>Send lesson request</span></button>
               </div>
             </form>
 
@@ -359,7 +360,7 @@
               <div class="done__check" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg></div>
               <h3 class="h3">Request received!</h3>
               <p class="muted">Your booking code: <strong class="code" id="doneCode"></strong></p>
-              <p class="muted">Last step: send your request on WhatsApp and Bekir will confirm within a few hours.</p>
+              <p class="muted">Last step: send your request on WhatsApp. Bekir checks and reserves the court on Glass and confirms within a few hours.</p>
               <div class="done__actions">
                 <a class="btn btn--wa" id="waLink" href="#" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg> Send via WhatsApp</a>
                 <button class="btn btn--ghost" type="button" id="icsBtn"><svg class="i" aria-hidden="true"><use href="#i-calplus"/></svg> Add to calendar</button>
