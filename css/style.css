@@ -817,8 +817,6 @@ legend { padding: 0; }
 .slot[aria-checked="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 .slots__empty { color: var(--muted); grid-column: 1 / -1; padding: 16px; border: 1.5px dashed var(--line-strong); border-radius: var(--r-md); text-align: center; }
 .legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; color: var(--muted); font-size: .86rem; }
-.booking-note { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; padding: 10px 12px; border-radius: var(--r-sm, 8px); background: var(--surface-2); color: var(--muted); font-size: .86rem; line-height: 1.45; }
-.booking-note .i { flex: none; width: 16px; height: 16px; margin-top: 2px; }
 .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; border: 1.5px solid var(--line-strong); }
 .dot--free { background: var(--surface); }
 .dot--taken { background: repeating-linear-gradient(135deg, var(--line-strong) 0 2px, transparent 2px 4px); margin-left: 8px; }
