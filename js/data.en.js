@@ -22,7 +22,8 @@ window.SITE = {
   },
 
   scoreboard: [
-    ["Licence", "ITF Coach"],
+    ["Licence", "FIP Padel Player"],
+    ["Padel coaching", "Since Nov 2025"],
     ["Courts", "Lepadel · Opadel"],
     ["Languages", "TR · EN"],
     ["Background", "Tennis · U12 TR Champion"],
@@ -41,7 +42,7 @@ window.SITE = {
     lead: "Padel is a game of positioning, patience and partnership. In my lessons we build all three, step by step, at your level.",
     paragraphs: [
       "Every lesson starts with finding your place on court: where to stand at the net and at the back, how to set up when the ball comes off the glass, how to share space with your partner. Shots like the volley, bandeja and víbora are built on that foundation.",
-      "My background is tennis: I've been in racket sports since 2005, I hold an ITF coaching licence, and I bring the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel and Opadel, in Turkish and English.",
+      "My background is tennis: I've been in racket sports since 2005 and hold an ITF tennis coaching licence. Today I'm an FIP-licensed padel player; I've been coaching padel since 1 November 2025, bringing the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel and Opadel, in Turkish and English.",
     ],
     principles: [
       { icon: "wall", title: "Reading the wall", text: "No panic when the ball comes off the glass: we work on reading the angle, waiting and hitting at the right moment." },

@@ -27,7 +27,8 @@ window.SITE = {
 
   // Hero skorbordu
   scoreboard: [
-    ["Lisans", "ITF Antrenör"],
+    ["Lisans", "FIP Padel Oyuncusu"],
+    ["Padel koçluğu", "Kasım 2025 →"],
     ["Kortlar", "Lepadel · Opadel"],
     ["Ders dili", "TR · EN"],
     ["Kökeni", "Tenis · U12 TR Şampiyonu"],
@@ -46,7 +47,7 @@ window.SITE = {
     lead: "Padel; doğru pozisyon, sabır ve partnerle uyum oyunu. Derslerimde bu üçünü seviyene göre adım adım kuruyoruz.",
     paragraphs: [
       "Her ders kort içindeki yerini bulmakla başlar: filede ve arkada nerede durmalısın, top camdan döndüğünde nasıl hazırlanmalısın, partnerinle alanı nasıl paylaşmalısın. Vole, bandeja ve víbora gibi vuruşlar bu temelin üzerine oturur.",
-      "Altyapım tenis: 2005'ten beri raket sporlarındayım, ITF antrenör lisansım var ve beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Lepadel ve Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
+      "Altyapım tenis: 2005'ten beri raket sporlarındayım ve tenis antrenörlüğünde ITF lisansım var. Bugün FIP lisanslı bir padel oyuncusuyum; 1 Kasım 2025'ten beri padel antrenörlüğü yapıyor, beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Lepadel ve Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
     ],
     principles: [
       { icon: "wall", title: "Duvar okuma", text: "Top camdan dönünce telaş yok: açıyı okumayı, beklemeyi ve doğru anda vurmayı çalışıyoruz." },
