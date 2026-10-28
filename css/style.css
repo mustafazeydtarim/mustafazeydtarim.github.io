@@ -206,6 +206,7 @@ legend { padding: 0; }
 .icon-btn:hover { border-color: var(--line-strong); background: var(--surface-2); }
 .icon-btn:active { transform: scale(.95); }
 .icon-btn:disabled { opacity: .4; cursor: not-allowed; }
+.lang-btn { font-weight: 800; font-stretch: 75%; font-size: .9rem; letter-spacing: .06em; text-decoration: none; }
 .link-btn {
   background: none; border: 0; padding: 10px 2px; min-height: 44px;
   color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px;

@@ -6,18 +6,136 @@
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) document.documentElement.classList.add("no-motion");
 
+  /* ---------------- Arayüz metinleri (TR / EN) ---------------- */
+  const I18N = {
+    tr: {
+      menuOpen: "Menüyü aç", menuClose: "Menüyü kapat",
+      waHello: "Merhaba Bekir Hoca, padel dersi hakkında bilgi almak istiyorum.",
+      champion: /şampiyon/i,
+      win: "Şampiyon", final: "Finalist",
+      popular: "En popüler", min: "dk", book: "Rezerve et",
+      flowLabel: (t) => `${t} dakikalık ders akışı: `, flowItem: (f) => `${f.min} dakika ${f.title}`,
+      flowTotal: (t) => `${t} dakikalık örnek birebir ders`,
+      stars: "5 üzerinden 5 yıldız",
+      wa: "WhatsApp", waValue: "Hemen mesaj gönder", phone: "Telefon", email: "E-posta",
+      tennis: "Tenis geçmişi", tennisValue: "Kariyer & başarılar", newTab: "(yeni sekmede açılır)",
+      maps: "Haritada aç", anyCourt: "Fark etmez",
+      quiz: [
+        { q: "Padel geçmişin nasıl?", opts: ["Hiç oynamadım", "Birkaç kez oynadım", "Düzenli oynuyorum", "Lig / turnuva oynuyorum"] },
+        { q: "Top duvardan ya da camdan döndükten sonra oynayabiliyor musun?", opts: ["Henüz değil", "Bazen", "Rahatça", "Bandeja / víbora ile hücum ediyorum"] },
+        { q: "Ana hedefin ne?", opts: ["Eğlence & sosyal", "Tekniğimi geliştirmek", "Lig / turnuva", "Tenisten padele geçiyorum"] },
+        { q: "Kim için ders arıyorsun?", opts: ["Kendim — birebir", "Partnerim / arkadaşlarımla", "Çocuğum / genç oyuncu"] },
+      ],
+      qOf: (n, t) => `Soru ${n}/${t}`, qBack: "← Önceki soru", qReset: "Testi tekrar çöz",
+      qPick: (name) => `Önerim: ${name}`, qBook: "Bu dersi rezerve et", qAsk: "Önce WhatsApp'tan sor",
+      levels: [
+        { level: "Seviye 1–2 · Başlangıç", form: "Başlangıç (1–2)", text: "Temeli doğru atmak her şeydir. Tutuş, hazır duruş, vole ve topun camdan dönmesine izin verme alışkanlığıyla başlayıp birkaç derste rahat ralli yapacak seviyeye gelmeyi hedefliyoruz." },
+        { level: "Seviye 2.5–3.5 · Gelişen", form: "Gelişen (2.5–3.5)", text: "Ralli kurabiliyorsun; sıra duvar çıkışlarında ve filede doğru pozisyonda. Arka cam çıkışları, lob ve vole tutarlılığına odaklanalım." },
+        { level: "Seviye 4–5 · Orta-ileri", form: "Orta-ileri (4–5)", text: "Sağlam bir oyunun var. Bandeja ve víbora ile fileyi korumak, smaç seçimi ve partnerle geçişler üzerine bir gelişim planı çıkaralım." },
+        { level: "Seviye 5.5+ · İleri / turnuva", form: "İleri / turnuva (5.5+)", text: "Rekabet seviyesindesin. Taktik, maç içi karar verme ve baskı altında oyun üzerine yoğun bir program öneriyorum." },
+      ],
+      neverPlayed: "Hiç oynamadım",
+      fromTennis: { level: "Tenisten padele geçiş", form: "Tenisten geçiyorum", text: "Top hissin ve vuruş temelin hazır; bu büyük avantaj. Uyarlayacağımız birkaç alışkanlık var: topun camdan dönmesine izin verip duvarla oynamak, daha kompakt ve kontrollü swing, sert vurmak yerine lob ve sabırla puan kurmak. İlk derslerde bu geçişe odaklanıyoruz." },
+      addLeague: " Lig hedefin için derslere maç oyunu bölümü ekliyoruz.",
+      addSocial: " Padel sosyal bir oyun; istersen arkadaşlarınla grup dersine de geçebilirsin.",
+      addJunior: " Junior derslerde çalışmayı oyunla birleştiriyoruz; ikili junior grup da açılabilir.",
+      closed: "Kapalı", free: (n) => `${n} boş`, full: "Dolu",
+      pickDay: "Önce yukarıdan bir gün seç.", past: "geçmiş", taken: "dolu",
+      sLesson: "Ders", sDuration: "Süre", sDate: "Tarih", sTime: "Saat",
+      hint: (l) => (l.unit.includes("grup") ? "Grup toplamıdır. " : "") + "Kort ücreti dahil · Ödeme havale / EFT.",
+      needDay: "Lütfen bir gün seç.", needTime: "Lütfen bir saat seç.",
+      picked: (name) => `${name} seçildi — şimdi gün ve saat seç.`,
+      vName: "Ad soyadını en az 3 karakter olarak gir.",
+      vPhone: "Telefonu 05XX XXX XX XX biçiminde gir.",
+      vEmail: "Geçerli bir e-posta adresi gir (ör. ad@mail.com) ya da boş bırak.",
+      vKvkk: "Devam etmek için onay kutusunu işaretle.",
+      slotGone: "Bu saat az önce doldu, lütfen başka bir saat seç.",
+      msg: (b, when, price) => [
+        "Merhaba Bekir Hoca, siteden ders rezervasyonu talebim var.", "",
+        `Kod: ${b.code}`, `Ders: ${b.lessonName} (${b.duration} dk)`, `Tarih: ${when}`, `Kort: ${b.location}`,
+        `Ad: ${b.name}`, `Telefon: ${b.phone}`, `Seviye: ${b.level}`, b.note ? `Not: ${b.note}` : null, `Tutar: ${price}`,
+      ],
+      mailSubject: (code) => `Padel dersi talebi ${code}`,
+      icsSummary: (name) => `Padel dersi — ${name} (Bekir Berk Şahin)`,
+      icsDesc: (code) => `Rezervasyon kodu: ${code}\nRaketini ve suyunu unutma!`,
+      icsAlarm: "Padel dersine 2 saat var", icsFile: "padel-dersi", icsDone: "Takvim dosyası indirildi.",
+      myBookings: "Rezervasyonlarım", cancelLabel: (code) => `${code} rezervasyonunu iptal et`,
+      noBookings: "Henüz rezervasyonun yok.", firstBooking: "İlk dersini ayırt",
+      confirmCancel: "Bu rezervasyonu iptal etmek istediğine emin misin?",
+      cancelled: "Rezervasyon iptal edildi. Bekir'e de haber vermeyi unutma.",
+    },
+    en: {
+      menuOpen: "Open menu", menuClose: "Close menu",
+      waHello: "Hi Bekir, I'd like some information about padel lessons.",
+      champion: /champion/i,
+      win: "Winner", final: "Finalist",
+      popular: "Most popular", min: "min", book: "Book now",
+      flowLabel: (t) => `${t}-minute lesson flow: `, flowItem: (f) => `${f.min} minutes ${f.title}`,
+      flowTotal: (t) => `A sample ${t}-minute private lesson`,
+      stars: "5 out of 5 stars",
+      wa: "WhatsApp", waValue: "Send a message", phone: "Phone", email: "Email",
+      tennis: "Tennis background", tennisValue: "Career & titles", newTab: "(opens in a new tab)",
+      maps: "Open in Maps", anyCourt: "No preference",
+      quiz: [
+        { q: "What's your padel experience?", opts: ["Never played", "Played a few times", "I play regularly", "I play league / tournaments"] },
+        { q: "Can you play the ball after it comes off the wall or glass?", opts: ["Not yet", "Sometimes", "Comfortably", "I attack with bandeja / víbora"] },
+        { q: "What's your main goal?", opts: ["Fun & social", "Improve my technique", "League / tournaments", "Switching from tennis"] },
+        { q: "Who are the lessons for?", opts: ["Me — one-to-one", "Me with my partner / friends", "My child / a junior player"] },
+      ],
+      qOf: (n, t) => `Question ${n}/${t}`, qBack: "← Previous question", qReset: "Retake the quiz",
+      qPick: (name) => `My suggestion: ${name}`, qBook: "Book this lesson", qAsk: "Ask on WhatsApp first",
+      levels: [
+        { level: "Level 1–2 · Beginner", form: "Beginner (1–2)", text: "Getting the basics right is everything. We start with the grip, ready position, volleys and the habit of letting the ball come off the glass, aiming for comfortable rallies within a few lessons." },
+        { level: "Level 2.5–3.5 · Improver", form: "Improver (2.5–3.5)", text: "You can rally; next up is playing off the walls and positioning at the net. Let's focus on back-glass exits, lobs and volley consistency." },
+        { level: "Level 4–5 · Intermediate-advanced", form: "Intermediate-advanced (4–5)", text: "You have a solid game. Let's build a plan around holding the net with bandeja and víbora, smash selection and transitions with your partner." },
+        { level: "Level 5.5+ · Advanced / competitive", form: "Advanced / competitive (5.5+)", text: "You're at competitive level. I recommend an intensive programme on tactics, in-match decisions and playing under pressure." },
+      ],
+      neverPlayed: "Never played",
+      fromTennis: { level: "Tennis to padel", form: "Switching from tennis", text: "Your feel for the ball and your strokes are already there, which is a big advantage. A few habits to adapt: letting the ball come off the glass and playing with the wall, a more compact and controlled swing, and building points with lobs and patience instead of power. The first lessons focus on this transition." },
+      addLeague: " For your league goal we add a match-play block to every lesson.",
+      addSocial: " Padel is a social game; you can also move on to group lessons with friends.",
+      addJunior: " Junior lessons mix training with play; junior pair lessons are available too.",
+      closed: "Closed", free: (n) => `${n} free`, full: "Full",
+      pickDay: "Pick a day above first.", past: "past", taken: "taken",
+      sLesson: "Lesson", sDuration: "Duration", sDate: "Date", sTime: "Time",
+      hint: (l) => (l.unit.includes("group") ? "Price is for the whole group. " : "") + "Court fee included · Payment by bank transfer.",
+      needDay: "Please pick a day.", needTime: "Please pick a time.",
+      picked: (name) => `${name} selected — now pick a day and time.`,
+      vName: "Enter your full name (at least 3 characters).",
+      vPhone: "Enter a valid phone number (e.g. 05XX XXX XX XX or +90…).",
+      vEmail: "Enter a valid email (e.g. name@mail.com) or leave it blank.",
+      vKvkk: "Please tick the consent box to continue.",
+      slotGone: "That time was just taken, please choose another.",
+      msg: (b, when, price) => [
+        "Hi Bekir, I'd like to book a lesson via your website.", "",
+        `Code: ${b.code}`, `Lesson: ${b.lessonName} (${b.duration} min)`, `Date: ${when}`, `Court: ${b.location}`,
+        `Name: ${b.name}`, `Phone: ${b.phone}`, `Level: ${b.level}`, b.note ? `Note: ${b.note}` : null, `Price: ${price}`,
+      ],
+      mailSubject: (code) => `Padel lesson request ${code}`,
+      icsSummary: (name) => `Padel lesson — ${name} (Bekir Berk Şahin)`,
+      icsDesc: (code) => `Booking code: ${code}\nDon't forget your racket and water!`,
+      icsAlarm: "Padel lesson in 2 hours", icsFile: "padel-lesson", icsDone: "Calendar file downloaded.",
+      myBookings: "My bookings", cancelLabel: (code) => `Cancel booking ${code}`,
+      noBookings: "You have no bookings yet.", firstBooking: "Book your first lesson",
+      confirmCancel: "Are you sure you want to cancel this booking?",
+      cancelled: "Booking cancelled. Remember to let Bekir know too.",
+    },
+  };
+  const L = I18N[S.lang] || I18N.tr;
+  const LOC = S.locale || "tr-TR";
+
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* gizli sekme vb. */ } },
   };
   const icon = (id) => `<svg class="i" aria-hidden="true"><use href="#i-${id}"/></svg>`;
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const tl = (n) => (n === 0 ? "Ücretsiz" : new Intl.NumberFormat("tr-TR").format(n) + " ₺");
+  const tl = (n) => (S.lang === "en" ? "₺" + new Intl.NumberFormat("en-GB").format(n) : new Intl.NumberFormat("tr-TR").format(n) + " ₺");
   const pad = (n) => String(n).padStart(2, "0");
   const isoDate = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const parseIso = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
-  const fmtLong = (s) => new Intl.DateTimeFormat("tr-TR", { weekday: "long", day: "numeric", month: "long" }).format(parseIso(s));
-  const fmtShortDay = (d) => new Intl.DateTimeFormat("tr-TR", { weekday: "short" }).format(d);
+  const fmtLong = (s) => new Intl.DateTimeFormat(LOC, { weekday: "long", day: "numeric", month: "long" }).format(parseIso(s));
+  const fmtShortDay = (d) => new Intl.DateTimeFormat(LOC, { weekday: "short" }).format(d);
   const html = (sel, markup) => { const el = $(sel); if (el) el.innerHTML = markup; return el; };
 
   let toastTimer;
@@ -29,14 +147,7 @@
     toastTimer = setTimeout(() => t.classList.remove("is-on"), 3500);
   }
 
-  /* ---------------- Fiyat ---------------- */
-  const allLessons = [...S.lessons, S.trial];
-  const lessonById = (id) => allLessons.find((l) => l.id === id) || S.lessons[0];
-  function priceFor(lesson, count) {
-    const pkg = S.packages.find((p) => p.count === count) || S.packages[0];
-    const per = Math.round((lesson.price * (1 - pkg.discount / 100)) / 10) * 10;
-    return { per, total: per * pkg.count, pkg };
-  }
+  const lessonById = (id) => S.lessons.find((l) => l.id === id) || S.lessons[0];
 
   /* ---------------- Tema ---------------- */
   $("#themeToggle").addEventListener("click", () => {
@@ -54,12 +165,12 @@
   const closeMenu = () => {
     links.classList.remove("is-open");
     menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.setAttribute("aria-label", "Menüyü aç");
+    menuBtn.setAttribute("aria-label", L.menuOpen);
   };
   menuBtn.addEventListener("click", () => {
     const open = links.classList.toggle("is-open");
     menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
+    menuBtn.setAttribute("aria-label", open ? L.menuClose : L.menuOpen);
     if (open) links.querySelector("a")?.focus({ preventScroll: true });
   });
   links.addEventListener("click", (e) => { if (e.target.closest("a")) closeMenu(); });
@@ -76,13 +187,11 @@
 
   const c = S.contact;
   const T = S.tennis || {};
-  const sport = S.sport || "Padel";
   const waBase = `https://wa.me/${c.whatsapp}`;
-  const waHello = `Merhaba Bekir Hoca, ${sport.toLocaleLowerCase("tr-TR")} dersi hakkında bilgi almak istiyorum.`;
 
   /* ---------------- Hero ---------------- */
   $("#heroEyebrow").textContent = `${S.title} · ${S.city}`;
-  $("#sbSub").textContent = `TUR · ${S.age} yaş · ${S.city}`;
+  $("#sbSub").textContent = `TUR · ${S.age} · ${S.city}`;
   $("#monogram").textContent = S.monogram;
   if (S.photo) $("#portrait").innerHTML = `<img src="${esc(S.photo)}" alt="${esc(S.name)}" width="144" height="144">`;
   html("#scoreboard", S.scoreboard.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""));
@@ -125,7 +234,7 @@
   if (T.profile) profile.href = T.profile; else profile.remove();
 
   html("#honours", (T.honours || []).map((h, i) => {
-    const gold = /şampiyon/i.test(h.title);
+    const gold = L.champion.test(h.title);
     return `
     <li class="honour ${gold ? "honour--gold" : ""} reveal" style="transition-delay:${i * 70}ms">
       <span class="honour__icon">${icon(gold ? "trophy" : "flag")}</span>
@@ -136,8 +245,8 @@
   }).join(""));
 
   const RESULT = {
-    win: { cls: "win", label: "Şampiyon", icon: "trophy", path: "M4 6h34v16h78", dot: 112 },
-    final: { cls: "final", label: "Finalist", icon: "medal", path: "M4 6h34v16h34", dot: 72 },
+    win: { cls: "win", label: L.win, icon: "trophy", path: "M4 6h34v16h78", dot: 112 },
+    final: { cls: "final", label: L.final, icon: "medal", path: "M4 6h34v16h34", dot: 72 },
   };
   html("#results", (T.results || []).map((r, i) => {
     const R = RESULT[r.result] || RESULT.final;
@@ -183,69 +292,37 @@
   });
   addEventListener("afterprint", () => document.body.classList.remove("print-cv"));
 
-  /* ---------------- Dersler + paket seçici ---------------- */
-  let viewPkg = S.packages[0].count;
-  function renderPkgToggle() {
-    $("#pkgToggle").innerHTML = S.packages.map((p) => {
-      const on = p.count === viewPkg;
-      return `<button type="button" role="radio" aria-checked="${on}" tabindex="${on ? 0 : -1}" data-pkg="${p.count}">${esc(p.label)}${p.discount ? ` <small>-%${p.discount}</small>` : ""}</button>`;
-    }).join("");
-  }
-  function renderLessons() {
-    $("#lessons").innerHTML = S.lessons.map((l) => {
-      const { per, total, pkg } = priceFor(l, viewPkg);
-      return `
-      <article class="lesson ${l.featured ? "lesson--featured navy" : ""}">
-        ${l.featured ? `<span class="lesson__tag">En popüler</span>` : ""}
-        <div class="lesson__icon">${icon(l.icon)}</div>
-        <h3 class="lesson__name">${esc(l.name)}</h3>
-        <div class="lesson__meta">${icon("clock")} ${Number(l.duration)} dk</div>
-        <p class="lesson__text">${esc(l.text)}</p>
-        <div class="lesson__price">
-          <span class="lesson__amount">${tl(per)}</span>
-          <span class="lesson__unit">/ ${esc(l.unit)}</span>
-          <span class="lesson__old">${pkg.discount ? `<s>${tl(l.price)}</s> · ${pkg.count} ders toplam ${tl(total)}` : "&nbsp;"}</span>
-        </div>
-        <ul class="lesson__perks">${(l.perks || []).map((p) => `<li>${icon("check")}<span>${esc(p)}</span></li>`).join("")}</ul>
-        <button class="btn btn--primary" type="button" data-book="${esc(l.id)}" data-pkg="${viewPkg}">Rezerve et ${icon("arrow")}</button>
-      </article>`;
-    }).join("");
-  }
-  function setPkg(count, focus) {
-    viewPkg = count;
-    renderPkgToggle(); renderLessons();
-    if (focus) $(`#pkgToggle [data-pkg="${viewPkg}"]`).focus();
-  }
-  $("#pkgToggle").addEventListener("click", (e) => {
-    const b = e.target.closest("[data-pkg]");
-    if (b) setPkg(Number(b.dataset.pkg), true);
-  });
-  $("#pkgToggle").addEventListener("keydown", (e) => {
-    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-    if (!(e.key in keys) && e.key !== "Home" && e.key !== "End") return;
-    e.preventDefault();
-    const n = S.packages.length;
-    const idx = S.packages.findIndex((p) => p.count === viewPkg);
-    const nextIdx = e.key === "Home" ? 0 : e.key === "End" ? n - 1 : (idx + keys[e.key] + n) % n;
-    setPkg(S.packages[nextIdx].count, true);
-  });
-  renderPkgToggle();
-  renderLessons();
+  /* ---------------- Dersler ---------------- */
+  html("#lessons", S.lessons.map((l) => `
+    <article class="lesson ${l.featured ? "lesson--featured navy" : ""}">
+      ${l.featured ? `<span class="lesson__tag">${L.popular}</span>` : ""}
+      <div class="lesson__icon">${icon(l.icon)}</div>
+      <h3 class="lesson__name">${esc(l.name)}</h3>
+      <div class="lesson__meta">${icon("clock")} ${Number(l.duration)} ${L.min}</div>
+      <p class="lesson__text">${esc(l.text)}</p>
+      <div class="lesson__price">
+        <span class="lesson__amount">${tl(l.price)}</span>
+        <span class="lesson__unit">/ ${esc(l.unit)}</span>
+      </div>
+      <ul class="lesson__perks">${(l.perks || []).map((p) => `<li>${icon("check")}<span>${esc(p)}</span></li>`).join("")}</ul>
+      <button class="btn btn--primary" type="button" data-book="${esc(l.id)}">${L.book} ${icon("arrow")}</button>
+    </article>`).join(""));
 
-  $("#trialTitle").textContent = `${S.trial.name}: ${S.trial.price === 0 ? "ücretsiz" : tl(S.trial.price)}.`;
-  $("#trialText").textContent = `${S.trial.duration} dakika. ${S.trial.text}`;
+  $("#trialTitle").textContent = S.trial.title;
+  $("#trialText").textContent = S.trial.text;
+  $("#trialBtn").dataset.book = S.trial.lesson;
 
   const flowTotal = S.lessonFlow.reduce((a, b) => a + b.min, 0);
   html("#flowBar", S.lessonFlow.map((f) =>
-    `<div class="flow__seg" style="--m:${Number(f.min)}"><div class="flow__min">${Number(f.min)}<small>dk</small></div><div class="flow__title">${esc(f.title)}</div></div>`).join(""));
-  $("#flowBar").setAttribute("aria-label", `${flowTotal} dakikalık ders akışı: ` + S.lessonFlow.map((f) => `${f.min} dakika ${f.title}`).join(", "));
-  $("#flowTotal").textContent = `${flowTotal} dakikalık örnek birebir ders`;
+    `<div class="flow__seg" style="--m:${Number(f.min)}"><div class="flow__min">${Number(f.min)}<small>${L.min}</small></div><div class="flow__title">${esc(f.title)}</div></div>`).join(""));
+  $("#flowBar").setAttribute("aria-label", L.flowLabel(flowTotal) + S.lessonFlow.map(L.flowItem).join(", "));
+  $("#flowTotal").textContent = L.flowTotal(flowTotal);
 
   /* ---------------- Yorumlar (boşsa bölüm kaldırılır) ---------------- */
   if (S.testimonials && S.testimonials.length) {
     html("#testimonials", S.testimonials.map((t, i) => `
       <figure class="t-card reveal" style="transition-delay:${i * 80}ms">
-        <div class="t-card__stars" role="img" aria-label="5 üzerinden 5 yıldız">${icon("star").repeat(5)}</div>
+        <div class="t-card__stars" role="img" aria-label="${L.stars}">${icon("star").repeat(5)}</div>
         <blockquote>${esc(t.text)}</blockquote>
         <figcaption><span class="t-card__avatar" aria-hidden="true">${esc(String(t.name || "?")[0])}</span><div><strong>${esc(t.name)}</strong><span>${esc(t.meta)}</span></div></figcaption>
       </figure>`).join(""));
@@ -260,35 +337,32 @@
   html("#faq", S.faq.map((f, i) => `<details class="reveal" ${i === 0 ? "open" : ""}><summary>${esc(f.q)}<span class="faq__ic" aria-hidden="true">${icon("plus")}</span></summary><p>${esc(f.a)}</p></details>`).join(""));
 
   /* ---------------- İletişim ---------------- */
+  const waHelloHref = `${waBase}?text=${encodeURIComponent(L.waHello)}`;
   const contactCards = [
-    { cls: "c-card--wa", icon: "chat", label: "WhatsApp", value: "Hemen mesaj gönder", href: `${waBase}?text=${encodeURIComponent(waHello)}`, ext: true },
-    { icon: "phone", label: "Telefon", value: c.phoneDisplay, href: `tel:${c.phone}` },
-    { icon: "mail", label: "E-posta", value: c.email, href: `mailto:${c.email}` },
-    { cls: "c-card--profile", icon: "trophy", label: "Tenis geçmişi", value: "Kariyer & başarılar", href: "#tenis" },
+    { cls: "c-card--wa", icon: "chat", label: L.wa, value: L.waValue, href: waHelloHref, ext: true },
+    { icon: "phone", label: L.phone, value: c.phoneDisplay, href: `tel:${c.phone}` },
+    { icon: "mail", label: L.email, value: c.email, href: `mailto:${c.email}` },
+    c.instagram && { icon: "insta", label: "Instagram", value: "@" + c.instagram, href: `https://instagram.com/${c.instagram}`, ext: true },
+    { cls: "c-card--profile", icon: "trophy", label: L.tennis, value: L.tennisValue, href: "#tenis" },
   ].filter(Boolean);
   html("#contactCards", contactCards.map((x, i) => `
     <a class="c-card ${x.cls || ""} reveal" style="transition-delay:${i * 60}ms" href="${esc(x.href)}" ${x.ext ? 'target="_blank" rel="noopener"' : ""}>
       <span class="c-card__icon">${icon(x.icon)}</span>
       <span class="c-card__body"><small>${esc(x.label)}</small><strong>${esc(x.value)}</strong></span>
       <svg class="i c-card__go" aria-hidden="true"><use href="#i-${x.ext ? "external" : "arrow"}"/></svg>
-      ${x.ext ? '<span class="sr-only">(yeni sekmede açılır)</span>' : ""}
+      ${x.ext ? `<span class="sr-only">${L.newTab}</span>` : ""}
     </a>`).join(""));
-  $("#mobileWa").href = `${waBase}?text=${encodeURIComponent(waHello)}`;
+  $("#mobileWa").href = waHelloHref;
   html("#locations", S.locations.map((l) => `
     <li><div><strong>${esc(l.name)}</strong><span>${esc(l.area)}${l.note ? " · " + esc(l.note) : ""}</span></div>
-    ${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">Haritada aç</a>` : ""}</li>`).join(""));
-  html("#fLoc", `<option>Fark etmez</option>` + S.locations.map((l) => `<option>${esc(l.name)} (${esc(l.area)})</option>`).join(""));
+    ${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">${L.maps}</a>` : ""}</li>`).join(""));
+  html("#fLoc", `<option>${L.anyCourt}</option>` + S.locations.map((l) => `<option>${esc(l.name)} (${esc(l.area)})</option>`).join(""));
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------------- Seviye testi ---------------- */
   // Padel seviyeleri: uygulamalarda yaygın 1–7 ölçeği
-  const QUIZ = [
-    { q: "Padel geçmişin nasıl?", opts: ["Hiç oynamadım", "Birkaç kez oynadım", "Düzenli oynuyorum", "Lig / turnuva oynuyorum"] },
-    { q: "Top duvardan ya da camdan döndükten sonra oynayabiliyor musun?", opts: ["Henüz değil", "Bazen", "Rahatça", "Bandeja / víbora ile hücum ediyorum"] },
-    { q: "Ana hedefin ne?", opts: ["Eğlence & sosyal", "Tekniğimi geliştirmek", "Lig / turnuva", "Tenisten padele geçiyorum"] },
-    { q: "Nasıl çalışmak istersin?", opts: ["Birebir — tüm odak bende", "Partnerimle", "4 kişilik grupla"] },
-  ];
-  const STYLE_LESSON = ["birebir", "ikili", "grup"];
+  const QUIZ = L.quiz;
+  const STYLE_LESSON = ["birebir", "grup", "junior"];
   let quizStep = 0;
   let answers = [];
   function renderQuiz() {
@@ -296,56 +370,39 @@
     if (quizStep < QUIZ.length) {
       const q = QUIZ[quizStep];
       box.innerHTML = `
-        <div class="quiz__progress"><span>Soru ${quizStep + 1}/${QUIZ.length}</span>
+        <div class="quiz__progress"><span>${L.qOf(quizStep + 1, QUIZ.length)}</span>
           <div class="quiz__track" aria-hidden="true"><i style="width:${(quizStep / QUIZ.length) * 100}%"></i></div></div>
         <p class="quiz__q" id="quizQ">${esc(q.q)}</p>
         <div class="quiz__opts" role="group" aria-labelledby="quizQ">
           ${q.opts.map((o, i) => `<button type="button" class="quiz__opt" data-a="${i}"><span aria-hidden="true">${"ABCD"[i]}</span>${esc(o)}</button>`).join("")}
         </div>
-        ${quizStep > 0 ? `<button type="button" class="link-btn quiz__back" data-qback>← Önceki soru</button>` : ""}`;
+        ${quizStep > 0 ? `<button type="button" class="link-btn quiz__back" data-qback>${L.qBack}</button>` : ""}`;
       return;
     }
     const r = quizResult();
     box.innerHTML = `
       <div class="quiz__result">
         <span class="quiz__level">${esc(r.level)}</span>
-        <h3>Önerim: ${esc(r.lesson.name)}${r.pkg.count > 1 ? ` · ${esc(r.pkg.label)}` : ""}</h3>
+        <h3>${esc(L.qPick(r.lesson.name))}</h3>
         <p>${esc(r.text)}</p>
         <div class="quiz__actions">
-          <button class="btn btn--primary" type="button" data-book="${esc(r.lesson.id)}" data-pkg="${r.pkg.count}" data-level="${esc(r.formLevel)}">Bu dersi rezerve et ${icon("arrow")}</button>
-          <button class="btn btn--ghost" type="button" data-book="${esc(S.trial.id)}" data-level="${esc(r.formLevel)}">Önce ücretsiz tanışalım</button>
-          <button class="link-btn" type="button" data-qreset>Testi tekrar çöz</button>
+          <button class="btn btn--primary" type="button" data-book="${esc(r.lesson.id)}" data-level="${esc(r.formLevel)}">${L.qBook} ${icon("arrow")}</button>
+          <a class="btn btn--ghost" href="${esc(waHelloHref)}" target="_blank" rel="noopener">${L.qAsk}</a>
+          <button class="link-btn" type="button" data-qreset>${L.qReset}</button>
         </div>
       </div>`;
   }
   function quizResult() {
     const [exp, wall, goal, style] = answers;
     const score = exp + wall;
-    let level, text, formLevel, pkgCount;
-    if (score <= 1) { level = "Seviye 1–2 · Başlangıç"; formLevel = exp === 0 ? "Hiç oynamadım" : "Başlangıç (1–2)"; pkgCount = 5;
-      text = "Temeli doğru atmak her şeydir. Tutuş, hazır duruş, vole ve topun camdan dönmesine izin verme alışkanlığıyla başlayıp birkaç derste rahat ralli yapacak seviyeye gelmeyi hedefliyoruz."; }
-    else if (score <= 3) { level = "Seviye 2.5–3.5 · Gelişen"; formLevel = "Gelişen (2.5–3.5)"; pkgCount = 5;
-      text = "Ralli kurabiliyorsun; sıra duvar çıkışlarında ve filede doğru pozisyonda. Arka cam çıkışları, lob ve vole tutarlılığına odaklanalım."; }
-    else if (score <= 5) { level = "Seviye 4–5 · Orta-ileri"; formLevel = "Orta-ileri (4–5)"; pkgCount = 10;
-      text = "Sağlam bir oyunun var. Bandeja ve víbora ile fileyi korumak, smaç seçimi ve partnerle geçişler üzerine 10 derslik bir gelişim planı çıkaralım."; }
-    else { level = "Seviye 5.5+ · İleri / turnuva"; formLevel = "İleri / turnuva (5.5+)"; pkgCount = 10;
-      text = "Rekabet seviyesindesin. Taktik, maç içi karar verme ve baskı altında oyun üzerine yoğun bir program öneriyorum."; }
-
-    let lessonId = STYLE_LESSON[style] || "birebir";
-    if (goal === 3) {
-      // Tenisten geçiş: alışkanlıkları padele uyarlama
-      level = "Tenisten padele geçiş";
-      formLevel = "Tenisten geçiyorum";
-      pkgCount = 5;
-      text = "Top hissin ve vuruş temelin hazır; bu büyük avantaj. Uyarlayacağımız birkaç alışkanlık var: topun camdan dönmesine izin verip duvarla oynamak, daha kompakt ve kontrollü swing, sert vurmak yerine lob ve sabırla puan kurmak. İlk derslerde bu geçişe odaklanıyoruz.";
-    } else {
-      if (score >= 4 && goal === 2) lessonId = "clinic";
-      if (goal === 2 && score >= 2 && lessonId !== "clinic") text += " Lig hedefin için derslere maç oyunu bölümü ekliyoruz.";
-      if (goal === 0 && lessonId !== "grup") text += " Padel sosyal bir oyun; istersen 4'lü grup dersleriyle de devam edebilirsin.";
-    }
-    if (lessonId === "clinic") text += " Maç Pratiği / Clinic formatında gerçek maç oyunu üzerinden koçluk yapıyoruz.";
-    if (!S.lessons.some((l) => l.id === lessonId)) lessonId = S.lessons[0].id;
-    return { level, text, formLevel, lesson: lessonById(lessonId), pkg: S.packages.find((p) => p.count === pkgCount) || S.packages[0] };
+    const band = score <= 1 ? 0 : score <= 3 ? 1 : score <= 5 ? 2 : 3;
+    let { level, form: formLevel, text } = goal === 3 ? L.fromTennis : L.levels[band];
+    if (goal !== 3 && band === 0 && exp === 0) formLevel = L.neverPlayed;
+    const lessonId = STYLE_LESSON[style] || "birebir";
+    if (goal === 2 && score >= 2) text += L.addLeague;
+    if (goal === 0 && lessonId === "birebir") text += L.addSocial;
+    if (lessonId === "junior") text += L.addJunior;
+    return { level, text, formLevel, lesson: lessonById(lessonId) };
   }
   $("#quiz").addEventListener("click", (e) => {
     const opt = e.target.closest("[data-a]");
@@ -362,7 +419,7 @@
   renderQuiz();
 
   /* ---------------- Rezervasyon ---------------- */
-  const B = { step: 1, lesson: S.lessons[0].id, pkg: 1, date: null, time: null, week: 0, last: null };
+  const B = { step: 1, lesson: S.lessons[0].id, date: null, time: null, week: 0, last: null };
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const lastDay = new Date(today); lastDay.setDate(today.getDate() + S.bookingDaysAhead - 1);
   const mondayOf = (d) => { const m = new Date(d); m.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return m; };
@@ -372,47 +429,29 @@
   const getBookings = () => { const v = store.get("bbs-bookings", []); return Array.isArray(v) ? v : []; };
   const setBookings = (list) => { store.set("bbs-bookings", list); updateBadge(); };
 
-  // Örnek doluluk: tarih+saatten türetilen sabit "dolu" slotlar (gerçek takvim bağlanana kadar)
-  function seededTaken(date, time) {
-    let h = 2166136261;
-    for (const ch of date + time) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
-    return (h >>> 0) % 100 < 28;
-  }
+  // Gerçek doluluk Bekir'in onayıyla netleşir; burada yalnızca geçmiş saatler ve bu cihazdaki talepler kapanır
   function slotState(date, time) {
     const d = parseIso(date);
     const [hh, mm] = time.split(":").map(Number);
     d.setHours(hh, mm);
     if (d.getTime() < Date.now() + 2 * 3600e3) return "past";
     if (getBookings().some((b) => b.date === date && b.time === time)) return "taken";
-    return seededTaken(date, time) ? "taken" : "free";
+    return "free";
   }
   const freeSlots = (date) => (S.schedule[parseIso(date).getDay()] || []).filter((t) => slotState(date, t) === "free");
 
   function renderLessonChoices() {
-    $("#lessonChoices").innerHTML = allLessons.map((l) => `
+    $("#lessonChoices").innerHTML = S.lessons.map((l) => `
       <label class="choice">
         <input type="radio" name="lesson" value="${esc(l.id)}" ${B.lesson === l.id ? "checked" : ""}>
         <span class="choice__box">
           <span class="choice__icon">${icon(l.icon)}</span>
-          <span class="choice__body"><strong>${esc(l.name)}</strong><span>${Number(l.duration)} dk${l.unit ? " · " + esc(l.unit) : ""}</span></span>
-          <span class="choice__price ${l.price === 0 ? "is-free" : ""}">${tl(l.price)}</span>
+          <span class="choice__body"><strong>${esc(l.name)}</strong><span>${Number(l.duration)} ${L.min}${l.unit ? " · " + esc(l.unit) : ""}</span></span>
+          <span class="choice__price">${tl(l.price)}</span>
         </span>
       </label>`).join("");
   }
-  function renderPkgChoices() {
-    const trial = B.lesson === S.trial.id;
-    $("#pkgChoices").innerHTML = S.packages.map((p) => `
-      <label class="choice" ${trial && p.count > 1 ? 'aria-disabled="true"' : ""}>
-        <input type="radio" name="pkg" value="${p.count}" ${B.pkg === p.count ? "checked" : ""} ${trial && p.count > 1 ? "disabled" : ""}>
-        <span class="choice__box">${esc(p.label)}${p.discount ? ` <small>-%${p.discount}</small>` : ""}</span>
-      </label>`).join("");
-  }
-  $("#lessonChoices").addEventListener("change", (e) => {
-    B.lesson = e.target.value;
-    if (B.lesson === S.trial.id) B.pkg = 1;
-    renderPkgChoices(); renderSummary();
-  });
-  $("#pkgChoices").addEventListener("change", (e) => { B.pkg = Number(e.target.value); renderSummary(); });
+  $("#lessonChoices").addEventListener("change", (e) => { B.lesson = e.target.value; renderSummary(); });
 
   function renderWeek() {
     const start = new Date(firstMonday); start.setDate(start.getDate() + B.week * 7);
@@ -423,7 +462,7 @@
       const inRange = d >= today && d <= lastDay;
       const hasSchedule = (S.schedule[d.getDay()] || []).length > 0;
       const free = inRange && hasSchedule ? freeSlots(iso).length : 0;
-      const label = !inRange ? "" : !hasSchedule ? "Kapalı" : free ? `${free} boş` : "Dolu";
+      const label = !inRange ? "" : !hasSchedule ? L.closed : free ? L.free(free) : L.full;
       days.push(`
         <button type="button" class="day ${iso === isoDate(today) ? "is-today" : ""}" role="radio" data-date="${iso}"
           aria-checked="${B.date === iso}" ${!free ? "disabled" : ""} aria-label="${esc(fmtLong(iso))}${label ? ", " + label : ""}">
@@ -432,18 +471,18 @@
     }
     $("#calWeek").innerHTML = days.join("");
     const end = new Date(start); end.setDate(start.getDate() + 6);
-    const mf = new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long" });
+    const mf = new Intl.DateTimeFormat(LOC, { day: "numeric", month: "long" });
     $("#calTitle").textContent = `${mf.format(start)} – ${mf.format(end)}`;
     $("#calPrev").disabled = B.week <= 0;
     $("#calNext").disabled = B.week >= maxWeek;
   }
   function renderSlots() {
     const box = $("#slots");
-    if (!B.date) { box.innerHTML = `<p class="slots__empty">Önce yukarıdan bir gün seç.</p>`; return; }
+    if (!B.date) { box.innerHTML = `<p class="slots__empty">${L.pickDay}</p>`; return; }
     const times = S.schedule[parseIso(B.date).getDay()] || [];
     box.innerHTML = times.map((t) => {
       const st = slotState(B.date, t);
-      return `<button type="button" class="slot" role="radio" data-time="${esc(t)}" aria-checked="${B.time === t}" ${st !== "free" ? `disabled aria-label="${esc(t)}, ${st === "past" ? "geçmiş" : "dolu"}"` : ""}>${esc(t)}</button>`;
+      return `<button type="button" class="slot" role="radio" data-time="${esc(t)}" aria-checked="${B.time === t}" ${st !== "free" ? `disabled aria-label="${esc(t)}, ${st === "past" ? L.past : L.taken}"` : ""}>${esc(t)}</button>`;
     }).join("");
   }
   $("#calWeek").addEventListener("click", (e) => {
@@ -465,19 +504,15 @@
 
   function renderSummary() {
     const l = lessonById(B.lesson);
-    const { per, total, pkg } = priceFor(l, B.pkg);
     const rows = [
-      ["Ders", l.name],
-      ["Süre", `${l.duration} dk`],
-      ["Paket", pkg.label + (pkg.discount ? ` (-%${pkg.discount})` : "")],
-      ["Tarih", B.date ? fmtLong(B.date) : "—"],
-      ["Saat", B.time || "—"],
+      [L.sLesson, l.name],
+      [L.sDuration, `${l.duration} ${L.min}`],
+      [L.sDate, B.date ? fmtLong(B.date) : "—"],
+      [L.sTime, B.time || "—"],
     ];
-    if (pkg.count > 1) rows.push(["Ders başı", tl(per)]);
     $("#summary").innerHTML = rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
-    $("#sumTotal").textContent = tl(total);
-    $("#sumHint").textContent = l.price === 0 ? "İlk görüşme için ücret alınmaz." :
-      (l.unit === "kişi başı" ? "Kişi başı fiyattır. " : "") + (pkg.count > 1 ? "İlk derste ödenir. Kort ücreti hariç." : "Kort ücreti hariç.");
+    $("#sumTotal").textContent = tl(l.price);
+    $("#sumHint").textContent = L.hint(l);
   }
 
   function updateStepper() {
@@ -503,7 +538,7 @@
   }
   document.addEventListener("click", (e) => {
     if (e.target.closest("[data-next]")) {
-      if (B.step === 2 && (!B.date || !B.time)) { toast(!B.date ? "Lütfen bir gün seç." : "Lütfen bir saat seç."); return; }
+      if (B.step === 2 && (!B.date || !B.time)) { toast(!B.date ? L.needDay : L.needTime); return; }
       goStep(B.step + 1);
     }
     if (e.target.closest("[data-prev]")) goStep(B.step - 1);
@@ -512,26 +547,27 @@
     const book = e.target.closest("[data-book]");
     if (book) {
       B.lesson = lessonById(book.dataset.book).id;
-      B.pkg = B.lesson === S.trial.id ? 1 : Number(book.dataset.pkg || 1);
       if (book.dataset.level) $("#fLevel").value = book.dataset.level;
-      renderLessonChoices(); renderPkgChoices(); renderSummary();
+      renderLessonChoices(); renderSummary();
       goStep(2, { focus: false });
       $("#rezervasyon").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
       setTimeout(() => $(".day:not([disabled])")?.focus({ preventScroll: true }), reduceMotion ? 0 : 600);
-      toast(`${lessonById(B.lesson).name} seçildi — şimdi gün ve saat seç.`);
+      toast(L.picked(lessonById(B.lesson).name));
     }
   });
 
   /* Form doğrulama */
   const validators = {
-    fName: (v) => (v.trim().length < 3 ? "Ad soyadını en az 3 karakter olarak gir." : ""),
+    fName: (v) => (v.trim().length < 3 ? L.vName : ""),
     fPhone: (v) => {
       const d = v.replace(/\D/g, "");
-      const ok = (d.length === 10 && d[0] === "5") || (d.length === 11 && d.startsWith("05")) || (d.length === 12 && d.startsWith("905"));
-      return ok ? "" : "Telefonu 05XX XXX XX XX biçiminde gir.";
+      const tr = (d.length === 10 && d[0] === "5") || (d.length === 11 && d.startsWith("05")) || (d.length === 12 && d.startsWith("905"));
+      // İngilizce sürümde yabancı numaralar da kabul (+ ile başlayan 8–15 hane)
+      const intl = S.lang === "en" && /^\+/.test(v.trim()) && d.length >= 8 && d.length <= 15;
+      return tr || intl ? "" : L.vPhone;
     },
-    fEmail: (v) => (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "Geçerli bir e-posta adresi gir (ör. ad@mail.com) ya da boş bırak." : ""),
-    fKvkk: (_, el) => (el.checked ? "" : "Devam etmek için onay kutusunu işaretle."),
+    fEmail: (v) => (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? L.vEmail : ""),
+    fKvkk: (_, el) => (el.checked ? "" : L.vKvkk),
   };
   function validate(id) {
     const el = $("#" + id);
@@ -554,17 +590,16 @@
     const bad = Object.keys(validators).filter((id) => !validate(id));
     if (bad.length) { $("#" + bad[0]).focus(); return; }
     if (!B.date || !B.time || slotState(B.date, B.time) !== "free") {
-      toast("Bu saat az önce doldu, lütfen başka bir saat seç.");
+      toast(L.slotGone);
       B.time = null; goStep(2); return;
     }
     const btn = $("#submitBtn");
     btn.classList.add("is-loading"); btn.disabled = true; btn.setAttribute("aria-busy", "true");
     setTimeout(() => {
       const l = lessonById(B.lesson);
-      const { total, pkg } = priceFor(l, B.pkg);
       const code = "BBS-" + Math.random().toString(36).slice(2, 6).toUpperCase();
       const booking = {
-        code, lesson: l.id, lessonName: l.name, duration: l.duration, pkg: pkg.count, pkgLabel: pkg.label, total,
+        code, lesson: l.id, lessonName: l.name, duration: l.duration, total: l.price,
         date: B.date, time: B.time,
         name: $("#fName").value.trim(), phone: $("#fPhone").value.trim(), email: $("#fEmail").value.trim(),
         level: $("#fLevel").value, location: $("#fLoc").value, note: $("#fNote").value.trim(), createdAt: Date.now(),
@@ -577,26 +612,12 @@
     }, 700);
   });
 
-  function bookingMessage(b) {
-    return [
-      "Merhaba Bekir Hoca, siteden ders rezervasyonu talebim var.",
-      "",
-      `Kod: ${b.code}`,
-      `Ders: ${b.lessonName} (${b.duration} dk)${b.pkg > 1 ? " — " + b.pkgLabel : ""}`,
-      `Tarih: ${fmtLong(b.date)}, ${b.time}`,
-      `Kort: ${b.location}`,
-      `Ad: ${b.name}`,
-      `Telefon: ${b.phone}`,
-      `Seviye: ${b.level}`,
-      b.note ? `Not: ${b.note}` : null,
-      `Tutar: ${tl(b.total)}`,
-    ].filter((x) => x !== null).join("\n");
-  }
+  const bookingMessage = (b) => L.msg(b, `${fmtLong(b.date)}, ${b.time}`, tl(b.total)).filter((x) => x !== null).join("\n");
   function fillDone(b) {
     $("#doneCode").textContent = b.code;
     const msg = bookingMessage(b);
     $("#waLink").href = `${waBase}?text=${encodeURIComponent(msg)}`;
-    $("#mailLink").href = `mailto:${c.email}?subject=${encodeURIComponent(`${sport} dersi talebi ${b.code}`)}&body=${encodeURIComponent(msg)}`;
+    $("#mailLink").href = `mailto:${c.email}?subject=${encodeURIComponent(L.mailSubject(b.code))}&body=${encodeURIComponent(msg)}`;
   }
 
   function downloadIcs(b) {
@@ -611,17 +632,17 @@
       "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Bekir Berk Sahin Padel//TR", "CALSCALE:GREGORIAN",
       "BEGIN:VEVENT",
       `UID:${b.code}@bekirberksahin`, `DTSTAMP:${stamp}`, `DTSTART:${f(start)}`, `DTEND:${f(end)}`,
-      `SUMMARY:${escIcs(`${sport} dersi — ${b.lessonName} (Bekir Berk Şahin)`)}`,
+      `SUMMARY:${escIcs(L.icsSummary(b.lessonName))}`,
       `LOCATION:${escIcs(b.location)}`,
-      `DESCRIPTION:${escIcs(`Rezervasyon kodu: ${b.code}\nRaketini ve suyunu unutma!`)}`,
-      "BEGIN:VALARM", "TRIGGER:-PT2H", "ACTION:DISPLAY", `DESCRIPTION:${sport} dersine 2 saat var`, "END:VALARM",
+      `DESCRIPTION:${escIcs(L.icsDesc(b.code))}`,
+      "BEGIN:VALARM", "TRIGGER:-PT2H", "ACTION:DISPLAY", `DESCRIPTION:${L.icsAlarm}`, "END:VALARM",
       "END:VEVENT", "END:VCALENDAR",
     ].join("\r\n");
     const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
-    const a = Object.assign(document.createElement("a"), { href: url, download: `${sport.toLowerCase()}-dersi-${b.date}.ics` });
+    const a = Object.assign(document.createElement("a"), { href: url, download: `${L.icsFile}-${b.date}.ics` });
     document.body.append(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    toast("Takvim dosyası indirildi.");
+    toast(L.icsDone);
   }
   $("#icsBtn").addEventListener("click", () => B.last && downloadIcs(B.last));
   $("#newBooking").addEventListener("click", () => {
@@ -640,18 +661,18 @@
     const badge = $("#bookingBadge");
     badge.hidden = n === 0;
     badge.textContent = n;
-    $("#myBookingsBtn").setAttribute("aria-label", n ? `Rezervasyonlarım (${n})` : "Rezervasyonlarım");
+    $("#myBookingsBtn").setAttribute("aria-label", n ? `${L.myBookings} (${n})` : L.myBookings);
   }
   function renderBookingsList() {
     const list = getBookings().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
-    const mf = new Intl.DateTimeFormat("tr-TR", { month: "short" });
+    const mf = new Intl.DateTimeFormat(LOC, { month: "short" });
     $("#bookingsList").innerHTML = list.length ? list.map((b) => `
       <div class="bk">
         <div class="bk__date"><strong>${parseIso(b.date).getDate()}</strong><small>${esc(mf.format(parseIso(b.date)))}</small></div>
         <div class="bk__body"><strong>${esc(b.lessonName)} · ${esc(b.time)}</strong><span>${esc(b.code)} · ${esc(b.location)}</span></div>
-        <button class="icon-btn" type="button" data-cancel="${esc(b.code)}" aria-label="${esc(b.code)} rezervasyonunu iptal et">${icon("trash")}</button>
+        <button class="icon-btn" type="button" data-cancel="${esc(b.code)}" aria-label="${esc(L.cancelLabel(b.code))}">${icon("trash")}</button>
       </div>`).join("")
-      : `<div class="empty"><p>Henüz rezervasyonun yok.</p><a href="#rezervasyon" class="btn btn--primary" data-close>İlk dersini ayırt</a></div>`;
+      : `<div class="empty"><p>${L.noBookings}</p><a href="#rezervasyon" class="btn btn--primary" data-close>${L.firstBooking}</a></div>`;
   }
   $("#myBookingsBtn").addEventListener("click", () => {
     renderBookingsList();
@@ -660,16 +681,16 @@
   dialog.addEventListener("click", (e) => {
     if (e.target === dialog || e.target.closest("[data-close]")) { dialog.close?.(); dialog.removeAttribute("open"); return; }
     const cancel = e.target.closest("[data-cancel]");
-    if (cancel && confirm("Bu rezervasyonu iptal etmek istediğine emin misin?")) {
+    if (cancel && confirm(L.confirmCancel)) {
       setBookings(getBookings().filter((b) => b.code !== cancel.dataset.cancel));
       renderBookingsList();
       if (B.step === 2) { renderWeek(); renderSlots(); }
-      toast("Rezervasyon iptal edildi. Bekir'e de haber vermeyi unutma.");
+      toast(L.cancelled);
       $("#bookingsList [data-cancel], #bookingsList [data-close]")?.focus();
     }
   });
 
-  renderLessonChoices(); renderPkgChoices(); renderSummary(); updateStepper(); updateBadge();
+  renderLessonChoices(); renderSummary(); updateStepper(); updateBadge();
 
   /* ---------------- Görünme, sayaçlar, aktif menü ---------------- */
   function countUp(el) {
