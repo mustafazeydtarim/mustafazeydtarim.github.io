@@ -19,7 +19,7 @@
       stars: "5 üzerinden 5 yıldız",
       wa: "WhatsApp", waValue: "Hemen mesaj gönder", phone: "Telefon", email: "E-posta",
       tennis: "Tenis geçmişi", tennisValue: "Kariyer & başarılar", newTab: "(yeni sekmede açılır)",
-      maps: "Haritada aç", glass: "Glass'ta gör", anyCourt: "Fark etmez",
+      maps: "Haritada aç", anyCourt: "Fark etmez",
       quiz: [
         { q: "Padel geçmişin nasıl?", opts: ["Hiç oynamadım", "Birkaç kez oynadım", "Düzenli oynuyorum", "Lig / turnuva oynuyorum"] },
         { q: "Top duvardan ya da camdan döndükten sonra oynayabiliyor musun?", opts: ["Henüz değil", "Bazen", "Rahatça", "Bandeja / víbora ile hücum ediyorum"] },
@@ -76,7 +76,7 @@
       stars: "5 out of 5 stars",
       wa: "WhatsApp", waValue: "Send a message", phone: "Phone", email: "Email",
       tennis: "Tennis background", tennisValue: "Career & titles", newTab: "(opens in a new tab)",
-      maps: "Open in Maps", glass: "View on Glass", anyCourt: "No preference",
+      maps: "Open in Maps", anyCourt: "No preference",
       quiz: [
         { q: "What's your padel experience?", opts: ["Never played", "Played a few times", "I play regularly", "I play league / tournaments"] },
         { q: "Can you play the ball after it comes off the wall or glass?", opts: ["Not yet", "Sometimes", "Comfortably", "I attack with bandeja / víbora"] },
@@ -357,7 +357,7 @@
   $("#mobileWa").href = waHelloHref;
   html("#locations", S.locations.map((l) => `
     <li><div><strong>${esc(l.name)}</strong><span>${esc(l.area)}${l.note ? " · " + esc(l.note) : ""}</span></div>
-    <span class="locations__links">${l.glass ? `<a href="${esc(l.glass)}" target="_blank" rel="noopener">${L.glass}<span class="sr-only"> ${L.newTab}</span></a>` : ""}${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">${L.maps}<span class="sr-only"> ${L.newTab}</span></a>` : ""}</span></li>`).join(""));
+    <span class="locations__links">${l.maps ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.maps)}" target="_blank" rel="noopener">${L.maps}<span class="sr-only"> ${L.newTab}</span></a>` : ""}</span></li>`).join(""));
   html("#fLoc", `<option>${L.anyCourt}</option>` + S.locations.map((l) => `<option>${esc(l.name)} (${esc(l.area)})</option>`).join(""));
   $("#year").textContent = new Date().getFullYear();
 

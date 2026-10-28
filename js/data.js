@@ -28,7 +28,7 @@ window.SITE = {
   // Hero skorbordu
   scoreboard: [
     ["Lisans", "ITF Antrenör"],
-    ["Kortlar", "Beşiktaş · Sarıyer"],
+    ["Kortlar", "Lepadel · Opadel"],
     ["Ders dili", "TR · EN"],
     ["Kökeni", "Tenis · U12 TR Şampiyonu"],
   ],
@@ -46,7 +46,7 @@ window.SITE = {
     lead: "Padel; doğru pozisyon, sabır ve partnerle uyum oyunu. Derslerimde bu üçünü seviyene göre adım adım kuruyoruz.",
     paragraphs: [
       "Her ders kort içindeki yerini bulmakla başlar: filede ve arkada nerede durmalısın, top camdan döndüğünde nasıl hazırlanmalısın, partnerinle alanı nasıl paylaşmalısın. Vole, bandeja ve víbora gibi vuruşlar bu temelin üzerine oturur.",
-      "Altyapım tenis: 2005'ten beri raket sporlarındayım, ITF antrenör lisansım var ve beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Akatlar'da Lepadel ve Sarıyer'de Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
+      "Altyapım tenis: 2005'ten beri raket sporlarındayım, ITF antrenör lisansım var ve beş ülkedeki akademilerden gelen teknik temeli padelin duvarlı, eşli oyununa uyarlıyorum. Lepadel ve Opadel kortlarında, çocuktan yetişkine her yaştan oyuncuya Türkçe ve İngilizce özel ders veriyorum.",
     ],
     principles: [
       { icon: "wall", title: "Duvar okuma", text: "Top camdan dönünce telaş yok: açıyı okumayı, beklemeyi ve doğru anda vurmayı çalışıyoruz." },
@@ -87,10 +87,8 @@ window.SITE = {
   bookingDaysAhead: 21,
 
   locations: [
-    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul",
-      glass: "https://glasspadelapp.com/venue/le-padel" },
-    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul",
-      glass: "https://glasspadelapp.com/venue/opadel" },
+    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul" },
+    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul" },
   ],
 
   // Gerçek öğrenci yorumları geldiğinde ekle: { name, meta, text } — boşsa bölüm gizlenir
@@ -101,8 +99,8 @@ window.SITE = {
     { q: "Tenisten geliyorum, padelde fark ne?", a: "Top hissin ve vuruş temelin büyük avantaj. Uyarlaman gerekenler: daha kompakt ve kontrollü swing, topun camdan dönmesine izin vermek, sert vurmak yerine lob ve sabırla puan kurmak. Benim de altyapım tenis; bu geçişi derslerde özellikle çalışıyoruz." },
     { q: "Hangi yaşlara ders veriyorsun?", a: "Her yaşa. Çocuk ve gençler için birebir ya da ikili junior dersler, yetişkinler için birebir ve grup dersleri veriyorum." },
     { q: "Ders ücretleri ne kadar, kort dahil mi?", a: "Birebir ders 5.000 ₺, 2 kişilik grup dersi toplam 6.000 ₺; bir ders 55 dakika. Kort ücreti bu fiyatlara dahil, ayrıca ödeme yapmazsın. Paket indirimi yok, her ders tek tek ücretlendirilir." },
-    { q: "Dersler nerede ve hangi günler?", a: "Beşiktaş Akatlar'daki Lepadel ve Sarıyer'deki Opadel kortlarında. Haftanın her günü 08:00–23:00 arasında ders veriyorum; uygun saati rezervasyonda seçebilirsin." },
-    { q: "Seçtiğim saatte kort boş olacak mı?", a: "Sitede seçtiğin saat bir taleptir. Kortlar Glass uygulaması üzerinden kiralanıyor; talebin gelince kort müsaitliğini Glass'tan kontrol edip kortu ayırıyorum ve WhatsApp'tan onaylıyorum. O saatte kort doluysa en yakın boş saati öneriyorum." },
+    { q: "Dersler nerede ve hangi günler?", a: "Lepadel ve Opadel kortlarında. Haftanın her günü 08:00–23:00 arasında ders veriyorum; uygun saati rezervasyonda seçebilirsin." },
+    { q: "Seçtiğim saatte kort boş olacak mı?", a: "Sitede seçtiğin saat bir taleptir. Talebin gelince kortun uygunluğuna bakıyorum; kort uygunsa ayırıp WhatsApp'tan onaylıyorum, değilse sana en yakın uygun saati öneriyorum." },
     { q: "Dersleri İngilizce verebilir misin?", a: "Evet. Dersleri Türkçe ve İngilizce veriyorum." },
     { q: "Ödeme nasıl yapılıyor?", a: "Ödemeler havale / EFT ile yapılır." },
     { q: "Ders iptal ya da erteleme nasıl oluyor?", a: "Dersten 24 saat öncesine kadar iptal ya da erteleme yapabilirsin. 24 saatten az kala yapılan iptallerde ders yapılmış sayılır ve ücreti alınır." },

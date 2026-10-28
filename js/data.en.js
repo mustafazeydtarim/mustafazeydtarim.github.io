@@ -23,7 +23,7 @@ window.SITE = {
 
   scoreboard: [
     ["Licence", "ITF Coach"],
-    ["Courts", "Beşiktaş · Sarıyer"],
+    ["Courts", "Lepadel · Opadel"],
     ["Languages", "TR · EN"],
     ["Background", "Tennis · U12 TR Champion"],
   ],
@@ -41,7 +41,7 @@ window.SITE = {
     lead: "Padel is a game of positioning, patience and partnership. In my lessons we build all three, step by step, at your level.",
     paragraphs: [
       "Every lesson starts with finding your place on court: where to stand at the net and at the back, how to set up when the ball comes off the glass, how to share space with your partner. Shots like the volley, bandeja and víbora are built on that foundation.",
-      "My background is tennis: I've been in racket sports since 2005, I hold an ITF coaching licence, and I bring the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel in Akatlar and Opadel in Sarıyer, in Turkish and English.",
+      "My background is tennis: I've been in racket sports since 2005, I hold an ITF coaching licence, and I bring the technical base from academies in five countries to padel's walled, doubles game. I coach players of every age, from kids to adults, at Lepadel and Opadel, in Turkish and English.",
     ],
     principles: [
       { icon: "wall", title: "Reading the wall", text: "No panic when the ball comes off the glass: we work on reading the angle, waiting and hitting at the right moment." },
@@ -80,10 +80,8 @@ window.SITE = {
   bookingDaysAhead: 21,
 
   locations: [
-    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul",
-      glass: "https://glasspadelapp.com/venue/le-padel" },
-    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul",
-      glass: "https://glasspadelapp.com/venue/opadel" },
+    { name: "Lepadel", area: "Clubsporium, Akatlar · Beşiktaş", maps: "Lepadel Clubsporium Akatlar Beşiktaş İstanbul" },
+    { name: "Opadel", area: "Skyland · Sarıyer", maps: "O'Padel Skyland Sarıyer İstanbul" },
   ],
 
   testimonials: [],
@@ -93,8 +91,8 @@ window.SITE = {
     { q: "I play tennis. What's different in padel?", a: "Your feel for the ball and stroke technique are a big advantage. What you'll adapt: a more compact, controlled swing, letting the ball come off the glass, and building points with lobs and patience instead of hitting hard. My background is tennis too, so we work on this transition specifically." },
     { q: "What ages do you teach?", a: "All ages. Private or junior pair lessons for kids and teens; private and group lessons for adults." },
     { q: "How much are lessons? Is the court included?", a: "A private lesson is ₺5,000 and a group lesson for 2 players ₺6,000 in total; each lesson is 55 minutes. The court fee is included, so there's nothing extra to pay. There are no package discounts; every lesson is charged individually." },
-    { q: "Where and when are lessons?", a: "At Lepadel in Akatlar (Beşiktaş) and Opadel in Sarıyer. I teach every day of the week, 08:00–23:00; pick a time that suits you when booking." },
-    { q: "Will the court be free at the time I pick?", a: "The time you pick on the site is a request. Courts are booked through the Glass app: when your request arrives I check court availability on Glass, reserve the court and confirm on WhatsApp. If that slot is taken, I'll suggest the nearest free time." },
+    { q: "Where and when are lessons?", a: "At Lepadel and Opadel. I teach every day of the week, 08:00–23:00; pick a time that suits you when booking." },
+    { q: "Will the court be free at the time I pick?", a: "The time you pick on the site is a request. When it arrives I check the court; if it's available I reserve it and confirm on WhatsApp, otherwise I'll suggest the nearest available time." },
     { q: "Do you teach in English?", a: "Yes. I teach in both English and Turkish." },
     { q: "How do I pay?", a: "Payment is by bank transfer (EFT)." },
     { q: "What's the cancellation policy?", a: "You can cancel or reschedule up to 24 hours before the lesson. With less than 24 hours' notice, the lesson counts as taken and is charged." },
